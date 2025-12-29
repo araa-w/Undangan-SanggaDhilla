@@ -1,0 +1,840 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    background-color: #264b09
+}
+
+@font-face {
+    font-family: 'Bembo'; /* Nama keluarganya */
+    src: url('fonts/Bembo-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Bembo'; /* Namanya TETAP SAMA */
+    src: url('fonts/Bembo-BoldItalic.otf') format('opentype');
+    font-weight: normal; /* Atau bold jika itu font bold */
+    font-style: italic;  /* Ini kuncinya: Browser akan pakai file ini jika teks dimiringkan */
+}
+
+.font-serif {
+    font-family: 'Bembo', 'Times New Roman', serif;
+}
+
+/* COVER PAGE */
+#cover-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: url('images/cover-bg.png') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+}
+
+#cover-page.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#cover-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.cover-content {
+    position: relative;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+}
+
+.cover-content p.subtitle {
+    font-size: 0.875rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+}
+
+.cover-content h1 {
+    font-size: 4rem;
+    font-style: italic;
+    margin: 0.5rem 0;
+}
+
+.cover-content .date {
+    font-size: 0.875rem;
+    margin: 1rem 0;
+}
+
+.cover-content .guest-name {
+    font-size: 1.25rem;
+    font-style: italic;
+    margin: 1rem 0;
+}
+
+.btn-open {
+    background: white;
+    color: #333;
+    padding: 0.875rem 2rem;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    margin-top: 2rem;
+    transition: transform 0.3s;
+}
+
+.btn-open:hover {
+    transform: scale(1.05);
+}
+
+/* NAVIGATION */
+/* STICKY NAVIGATION BAR */
+.sticky-nav {
+    position: fixed;
+    top: 50%;
+    
+    /* LOGIKA POSISI: */
+    /* Kita tempelkan ke sisi kiri area "HP" (bukan kiri layar monitor) */
+    /* left: 50%;  */
+    /* Geser ke kiri sejauh setengah lebar HP (240px) */
+    /* margin-left: 0px;  */
+    
+    /* Agar vertikal tetap di tengah */
+    transform: translateY(-50%);
+    
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+    /* Background & Efek Kaca */
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(5px);
+    
+    /* BENTUK TAB: */
+    /* Rata di kiri (0), Bulat di kanan (25px) */
+    border-radius: 0 25px 25px 0;
+    
+    /* Padding diatur agar ikon terlihat pas */
+    padding: 20px 10px 20px 5px; 
+    
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    
+    /* Animasi muncul */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+/* Agar nav muncul saat cover hilang */
+body.opened .sticky-nav {
+    visibility: visible;
+    opacity: 1;
+}
+
+.nav-icon {
+    width: 35px;
+    height: 35px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.nav-icon:hover {
+    transform: scale(1.1);
+    background: #264b09; /* Warna hijau saat hover */
+    color: white; /* Icon jadi putih */
+}
+
+/* Animasi putar untuk tombol musik jika sedang play */
+.nav-icon.playing {
+    animation: spin 3s linear infinite;
+    background: #ffd1a1;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+/* MAIN CONTENT */
+#main-content {
+    display: none;
+}
+
+#main-content.show {
+    display: block;
+}
+
+#wedding-header {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Tinggi selayar penuh */
+    /* GANTI 'images/foto-mempelai.jpg' dengan foto prewed kamu */
+    background: url('images/cover-bg.png') center/cover no-repeat; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Teks ada di tengah foto */
+    text-align: center;
+    color: white;
+}
+
+.header-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3); /* Gelapkan foto sedikit biar teks jelas */
+}
+
+.header-content {
+    position: relative;
+    z-index: 10;
+    padding-bottom: 5rem; /* Dorong ke atas sedikit dari sobekan kertas */
+}
+
+.small-title {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    /* text-transform: uppercase; */
+    margin-bottom: 5rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.header-names {
+    font-family: 'Bembo', serif; /* Atau ganti font script latin */
+    font-size: 4rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+    font-style: italic;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.dan-symbol {
+    font-size: 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+}
+
+.header-date {
+    font-size: 1rem;
+    /* background: rgba(255, 255, 255, 0.2); */
+    padding: 55px 0px;
+    border-radius: 20px;
+    /* backdrop-filter: blur(5px); */
+    display: inline-block;
+}
+
+/* SOBEKAN KERTAS KHUSUS HEADER */
+.paper-ripped-header {
+    position: absolute;
+    bottom: -40px; /* Tempel di bawah */
+    left: 0;
+    right: 0;
+    height: 80px;
+    /* Gunakan gambar sobekan warna CREAM karena bawahnya section cream */
+    background: url('images/tomrip-cream.png') center bottom/cover no-repeat;
+    z-index: 2;
+}
+
+section {
+    min-height: 100vh;
+    padding: 4rem 1.5rem;
+    position: relative;
+}
+
+#love-story{
+    min-height: auto;
+    height: auto;
+    padding: 2rem 1.5rem 8rem 1.5rem;
+}
+
+#gift{
+    min-height: auto;
+    height: auto;
+    padding: 9rem 1.5rem 15rem 1.5rem;
+}
+
+#footer{
+    min-height: auto;
+    height: auto;
+    padding: 1rem 1.5rem 2rem 1.5rem;
+}
+
+/* SECTION BACKGROUNDS */
+.bg-cream {
+    background: #ffd1a1;
+}
+
+.bg-green {
+    background: #264b09;
+    color: white;
+}
+
+/* PAPER RIPPED EFFECT - PERBAIKAN */
+/* Paper Ripped Hijau untuk bagian atas section hijau */
+.paper-ripped-top {
+    position: absolute;
+    top: -1px; /* Hindari gap */
+    left: 0;
+    right: 0;
+    height: 100px; /* Tinggi lebih besar */
+    background: url('images/toprip-hijau.png') center top/cover no-repeat;
+    z-index: 2;
+}
+
+/* Paper Ripped Cream untuk bagian bawah section hijau */
+.paper-ripped-bottom {
+    position: absolute;
+    bottom: -10px; /* Hindari gap */
+    left: 0;
+    right: 0;
+    height: 100px; /* Tinggi lebih besar */
+    background: url('images/tomrip-cream.png') center bottom/cover no-repeat;
+    z-index: 2;
+}
+
+/* Untuk section cream yang butuh paper ripped hijau di bawah */
+#bride-groom .paper-ripped-bottom {
+    background: url('images/toprip-hijau.png') bottom center/cover no-repeat;
+    bottom: -1px;
+    height: 150px;
+}
+
+#bride-groom::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: url('images/toprip-hijau.png') bottom center/cover no-repeat;
+    z-index: 20;
+    pointer-events: none;
+}
+
+/* Untuk section love-story yang butuh paper ripped hijau di bawah */
+#love-story .paper-ripped-bottom {
+    background: url('images/tomrip-cream.png') center bottom/cover no-repeat;
+}
+
+#love-story::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    height: 100px;
+    transform: rotate(180deg);
+    background: url('images/tomrip-cream.png') bottom center/cover no-repeat;
+    z-index: 2;
+    pointer-events: none;
+}
+
+#wishes::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    height: 100px;
+    transform: rotate(180deg);
+    background: url('images/tomrip-cream.png') bottom center/cover no-repeat;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* FLORAL DECORATION - 3 VARIASI */
+.floral-decoration {
+    width: 250px;
+    height: 100px;
+    margin: 0 auto 2rem;
+    background: url('images/bunga1.png') center/contain no-repeat;
+}
+
+.flower-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 100px;
+}
+
+/* Base class untuk semua bunga */
+.flower {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Ukuran bunga */
+.flower-small {
+    width: 80px;
+    height: 80px;
+}
+
+.flower-medium {
+    width: 150px;
+    height: 100px;
+}
+
+.flower-large {
+    width: 250px;
+    height: 150px;
+}
+
+/* Posisi bunga - Horizontal */
+.flower-left {
+    left: 0;
+}
+
+.flower-center {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.flower-right {
+    right: 0;
+}
+
+/* Posisi bunga - Vertical */
+.flower-top {
+    top: 0;
+}
+
+.flower-middle {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.flower-bottom {
+    bottom: 0;
+}
+
+/* Kombinasi center-middle */
+.flower-center.flower-middle {
+    transform: translate(-50%, -50%);
+}
+
+/* Jenis bunga */
+.flower-1 {
+    background-image: url('images/bunga1.png');
+}
+
+.flower-2 {
+    background-image: url('images/bunga2.png');
+}
+
+.flower-3 {
+    background-image: url('images/bunga3.png');
+}
+
+/* Rotasi bunga (opsional) */
+.flower-rotate-90 {
+    transform: rotate(90deg);
+}
+
+.flower-rotate-180 {
+    transform: rotate(180deg);
+}
+
+.flower-rotate-270 {
+    transform: rotate(270deg);
+}
+
+/* Flip bunga (opsional) */
+.flower-flip-h {
+    transform: scaleX(-1);
+}
+
+.flower-flip-v {
+    transform: scaleY(-1);
+}
+
+/* Z-index untuk layer bunga */
+.flower-back {
+    z-index: 1;
+}
+
+.flower-front {
+    z-index: 3;
+}
+
+/* BUNGA OVERFLOW - Keluar dari Container */
+.flower-overflow {
+    overflow: visible !important;
+}
+
+/* Posisi bunga ekstrem (keluar dari batas) */
+.flower-top-right-corner {
+    position: absolute;
+    top: -50px;  /* Naik ke atas */
+    right: -50px; /* Keluar ke kanan */
+    width: 280px;
+    height: 200px;
+    z-index: 10;
+}
+
+/* Untuk section dengan bunga overflow */
+section.has-overflow-flower {
+    overflow: visible;
+    position: relative;
+}
+
+/* Khusus bride-groom section */
+#bride-groom {
+    overflow: visible;
+}
+
+#bride-groom .flower-container {
+    overflow: visible;
+}
+
+/* Variasi bunga untuk section berbeda */
+#time-place .floral-decoration {
+    background: url('images/bunga2.png') center/contain no-repeat;
+}
+
+#love-story .floral-decoration {
+    background: url('images/bunga3.png') center/contain no-repeat;
+}
+
+#wishes .floral-decoration:first-child {
+    background: url('images/bunga1.png') center/contain no-repeat;
+}
+
+#wishes .floral-decoration:last-of-type {
+    background: url('images/bunga2.png') center/contain no-repeat;
+}
+
+.bg-green .floral-decoration:last-child {
+    background: url('images/bunga3.png') center/contain no-repeat;
+}
+
+/* --- PAGINATION CONTROLS --- */
+#pagination-controls {
+    position: relative; 
+    z-index: 50; /* KUNCI UTAMA: Angkat ke atas layer bunga/kertas */
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Desain Tombol Pagination */
+.btn-page {
+    background-color: white;
+    color: #264b09; /* Hijau Tua */
+    border: 1px solid #264b09;
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+/* Efek saat mouse diarahkan */
+.btn-page:hover {
+    background-color: #ffe4b5; /* Cream terang */
+    transform: translateY(-2px);
+}
+
+/* Desain Tombol yang Sedang Aktif (Halaman saat ini) */
+.btn-page.active {
+    background-color: #264b09;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* TYPOGRAPHY */
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.couple-names {
+    font-size: 3.5rem;
+    text-align: center;
+    font-style: italic;
+    line-height: 1.2;
+}
+
+/* COUNTDOWN */
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.countdown-item {
+    background: #FFF8E7;
+    padding: 1.5rem 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.countdown-item .number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #264b09;
+}
+
+.countdown-item .label {
+    font-size: 0.75rem;
+    color: #666;
+}
+
+/* LOVE STORY */
+.story-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.story-icon {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.story-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.story-content p {
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* GIFT CARDS */
+.gift-card {
+    background: #FFF8E7;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    
+    /* TAMBAHAN BARU: Flexbox */
+    display: flex;
+    justify-content: space-between; /* Jarak maksimal antara teks dan tombol */
+    align-items: center; /* Posisi vertikal di tengah */
+    gap: 1rem; /* Jarak aman agar teks tidak menabrak tombol */
+}
+
+/* Pastikan teks tidak terlalu lebar sampai menutupi tombol */
+.gift-text {
+    flex: 1; /* Mengambil sisa ruang yang ada */
+}
+
+.gift-card h4 {
+    font-weight: 600;
+    margin-bottom: 0.25rem; /* Sedikit dirapatkan */
+    font-size: 1rem; /* Opsional: sesuaikan ukuran font judul */
+    color: #264b09;
+}
+
+.gift-card p {
+    font-size: 0.875rem;
+    margin-bottom: 0; /* Hapus margin bawah karena sudah di tengah */
+    line-height: 1.4;
+    color: #264b09;
+}
+
+.btn-copy {
+    background: #264b09;
+    color: white;
+    /* Ubah padding agar tombol lebih compact/kecil */
+    padding: 0.5rem 1rem; 
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-size: 0.75rem; /* Font tombol diperkecil sedikit */
+    white-space: nowrap; /* Mencegah teks tombol turun baris */
+    flex-shrink: 0; /* Mencegah tombol gepeng jika teks alamat panjang */
+    height: fit-content;
+}
+
+/* FORM */
+.wish-form {
+    max-width: 500px;
+    margin: 0 auto 3rem;
+}
+
+.wish-form input,
+.wish-form select,
+.wish-form textarea {
+    width: 100%;
+    padding: 0.875rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    font-family: inherit;
+}
+
+.wish-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.btn-submit {
+    width: 100%;
+    background: #264b09;
+    color: white;
+    padding: 0.875rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* WISH CARDS */
+.wish-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+}
+
+.wish-card h4 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.wish-card p {
+    font-size: 0.875rem;
+    color: #555;
+}
+
+/* UTILITIES */
+.footer-couple-img {
+    text-align: center; /* Memastikan gambar ada di tengah */
+    margin-bottom: 2rem; /* Jarak ke hiasan bunga di bawahnya */
+    margin-top: 1rem;    /* Jarak dari teks "Kami Yang Berbahagia" */
+}
+
+.footer-couple-img img {
+    max-width: 250px; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
+    width: 100%;      /* Agar mengecil otomatis jika layar sangat sempit */
+    height: auto;     /* Menjaga proporsi gambar */
+    display: inline-block;
+}
+
+.max-w-md {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-8 { margin-bottom: 2rem; }
+
+/* VENUE IMAGE */
+.venue-image {
+    /* LEBAR PENUH: Tarik gambar ke kiri & kanan sejauh 1.5rem (sesuai padding section) */
+    width: calc(100% + 3rem);
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    
+    /* POSISI KE BAWAH: Tarik gambar ke bawah sejauh 4rem (sesuai padding bawah section) */
+    /* Ini akan membuat gambar turun dan tertutup efek sobekan kertas */
+    margin-bottom: -4rem; 
+
+    /* PENTING: Matikan batas lebar maksimal agar bisa melebar penuh */
+    max-width: none;
+    
+    /* Atur tinggi gambar (bisa diubah sesuai selera, misal 450px) */
+    height: 400px;
+    
+    /* Hapus sudut melengkung agar terlihat menyatu dengan layar */
+    border-radius: 0;
+    
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    z-index: 1; /* Pastikan gambar ada di BELAKANG efek kertas sobek */
+}
+
+.venue-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* BUTTON MAPS */
+.btn-maps {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #FFF8E7;
+    color: #264b09;
+    padding: 0.875rem 1.5rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: background 0.3s;
+}
+
+.btn-maps:hover {
+    background: #FFE4B5;
+}
+
+@media (max-width: 640px) {
+    .cover-content h1 {
+        font-size: 3rem;
+    }
+    
+    .couple-names {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+
+    /* Paper ripped lebih kecil di mobile */
+    .paper-ripped-top,
+    .paper-ripped-bottom {
+        height: 60px;
+    }
+
+    .floral-decoration {
+        width: 180px;
+        height: 70px;
+    }
+}

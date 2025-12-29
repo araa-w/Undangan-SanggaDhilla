@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation - Sangga & Dhilla</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- COVER PAGE -->
+    <div id="cover-page">
+        <div class="cover-content">
+            <p class="subtitle">The Wedding Of</p>
+            <div class="footer-couple-img">
+                <img src="images/nama.png" alt="Sangga & Dhilla">
+            </div>
+            <p class="date">Ahad, 08 Februari 2026</p>
+            <p style="font-size: 0.75rem; margin: 1rem 0;">Kepada Yth :</p>
+            <p style="font-size: 0.875rem;">Bpk/Ibu/Saudara/i</p>
+            <p class="guest-name font-serif">Aisyah Nur</p>
+            <p style="font-size: 0.75rem;">di Tempat</p>
+            <button class="btn-open" onclick="openInvitation()">✉ Buka Undangan</button>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <div class="sticky-nav">
+        <div class="nav-icon" onclick="scrollToSection('bride-groom')" title="Mempelai">❤️</div>
+        <div class="nav-icon" onclick="scrollToSection('time-place')" title="Lokasi">📍</div>
+        <div class="nav-icon" onclick="scrollToSection('love-story')" title="Cerita">💕</div>
+        <div class="nav-icon" onclick="scrollToSection('gift')" title="Hadiah">🎁</div>
+        <div class="nav-icon" onclick="scrollToSection('wishes')" title="Ucapan">💬</div>
+        <div class="nav-icon" id="music-btn" onclick="toggleMusic()">🔇</div>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="audio/lagu-pernikahan.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- MAIN CONTENT -->
+    <div id="main-content">
+        <header id="wedding-header">
+            <div class="header-overlay"></div>
+            
+            <div class="header-content">
+                <p class="small-title">The Wedding Of</p>
+                
+                <div class="footer-couple-img">
+                    <img src="images/nama.png" alt="Sangga & Dhilla">
+                </div>
+                
+                <p class="header-date">Ahad, 08 Februari 2026</p>
+            </div>
+
+            <div class="paper-ripped-header"></div>
+        </header>
+
+        <!-- BRIDE & GROOM SECTION -->
+        <section id="bride-groom" class="bg-cream" style="overflow: visible;" >
+            <br/>
+            <div style="position: absolute; 
+                top: -430px; 
+                right: -70px;
+                transform: rotate(30deg);
+                width: 420px; 
+                height: 590px; 
+                background: url('images/bunga2.png') center/contain no-repeat;
+                z-index: 10;">
+            </div>
+
+            <h2 class="font-serif">Bride & Groom</h2>
+            
+            <div class="max-w-md text-center mb-8">
+                <p style="font-size: 0.875rem; line-height: 1.6;">
+                    Assalamualaikum Warahmatullahi Wabarakatuh<br/><br/>
+                    Dengan memohon rahmat dan ridho Allah Swt, kami bermaksud mengundang 
+                    Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan putra-putri kami:
+                </p>
+            </div>
+
+            <h1 class="couple-names font-serif mb-4">
+                Sangga
+            </h1>
+
+            <p class="text-center mb-2" style="font-size: 0.875rem;">
+                Susangga
+            </p>
+
+            <p class="text-center mb-2" style="font-size: 0.875rem;">
+                Putra Ketiga dari<br/>Bpk. Surya Alam (Alm) & Ibu Kartini (Alm)
+            </p>
+
+            <h1 class="couple-names font-serif mb-4">
+                <span style="font-size: 2.5rem;">&</span>
+            </h1>
+
+            <h1 class="couple-names font-serif mb-4">
+                Dhilla
+            </h1>
+
+            <p class="text-center mb-2" style="font-size: 0.875rem;">
+                Dian Rezki Fadhilla
+            </p>
+
+            <p class="text-center mb-2" style="font-size: 0.875rem;">
+                Putri Pertama dari <br/> Bpk. Yarniwaldi dan Ibu Kuspinah
+            </p>
+
+            <div style="position: absolute; 
+                        bottom: 500px; 
+                        right: -140px; 
+                        width: 300px; 
+                        height: 240px; 
+                        transform: rotate(-20deg);
+                        background: url('images/bunga3.png') center/contain no-repeat;
+                        z-index: 5;">
+            </div>
+
+            <div style="position: absolute; 
+                        bottom: 250px; 
+                        left: -130px; 
+                        width: 300px; 
+                        height: 240px;
+                        transform: rotate(110deg);
+                        background: url('images/bunga3.png') center/contain no-repeat;
+                        z-index: 5;">
+            </div>
+
+            <div style="position: absolute;
+                        bottom: -80px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 400px;
+                        height: 320px;
+                        background: url('images/bunga1.png') center/contain no-repeat;
+                        z-index: 25;">
+            </div>
+
+        </section>
+
+        <!-- TIME & PLACE SECTION -->
+        
+        <section id="time-place" class="bg-green">
+            
+            <h2 class="font-serif">Time & Place</h2>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="number" id="days">00</div>
+                    <div class="label">Hari</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="number" id="hours">00</div>
+                    <div class="label">Jam</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="number" id="minutes">00</div>
+                    <div class="label">Menit</div>
+                </div>
+            </div>
+
+            <div class="text-center mb-8">
+                <p style="font-size: 1.125rem; margin-bottom: 0.5rem;">Ahad, 08 Februari 2026</p>
+                <p style="font-size: 0.875rem;">08:00 s.d Selesai</p>
+            </div>
+
+            <div class="max-w-md text-center mb-8">
+                <p style="font-weight: 600; margin-bottom: 0.5rem;">Sport Center Alam Sutera</p>
+                <p style="font-size: 0.875rem;">
+                    Jl. Alam Sutera Boulevard, Pd. Jagung Tim., Kec. Serpong Utara, 
+                    Kota Tangerang Selatan, Banten 15326
+                </p>
+            </div>
+
+            <div class="text-center mb-2" style="margin-top: 4rem;">
+                <a href="https://maps.app.goo.gl/JkYptsdb5efHHhm37" target="_blank" class="btn-maps">
+                    📍 Google Maps
+                </a>
+            </div>
+
+            <div class="venue-image">
+                <img src="images/venue.png" alt="Venue">
+            </div>
+
+            <div class="paper-ripped-bottom"></div>
+        </section>
+
+        <!-- LOVE STORY SECTION -->
+        <section id="love-story" class="bg-cream">
+
+            <h2 class="font-serif">Love Story</h2>
+
+            <div class="max-w-md">
+                <div class="story-item">
+                    <div class="story-icon">❤️</div>
+                    <div class="story-content">
+                        <h3>Awal Bertemu</h3>
+                        <p>
+                            Ada ajakan Ta'aruf yang diutarakan oleh teman kami, yaitu Mario dan Istirinya. 
+                            Kemudian dilakukan nuzur atau pertemuan pertama di Masjid An-Nashr. Ada respon 
+                            positif yang kami rasakan, membuat kami memutuskan melanjutkan ke arah ini.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="story-item">
+                    <div class="story-icon">❤️</div>
+                    <div class="story-content">
+                        <h3>Khitbah</h3>
+                        <p>
+                            Setelah melalui proses saling mengenal, Sangga pun mengutarakan niatnya untuk 
+                            meng-khitbah Dhilla di bulan November dan disambut baik oleh kedua keluarga.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="story-item">
+                    <div class="story-icon">❤️</div>
+                    <div class="story-content">
+                        <h3>Pernikahan</h3>
+                        <p>
+                            Baru saling kenal tapi atas izin Allah berjodoh. InsyaAllah di bulan Februari 
+                            ini kami akan melangsungkan ikatan sah yaitu akad nikah.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="paper-ripped-bottom"></div>
+            <div style="position: absolute;
+                        bottom: 590px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 400px;
+                        height: 320px;
+                        background: url('images/bunga1.png') center/contain no-repeat;
+                        z-index: 25;">
+            </div>
+
+            <div style="position: absolute; 
+                        bottom: 500px; 
+                        right: -180px; 
+                        width: 300px; 
+                        height: 240px; 
+                        transform: rotate(-140deg);
+                        background: url('images/bunga3.png') center/contain no-repeat;
+                        z-index: 5;">
+            </div>
+
+            <div style="position: absolute; 
+                        bottom: 10px; 
+                        left: -180px; 
+                        width: 300px; 
+                        height: 240px;
+                        transform: rotate(20deg);
+                        background: url('images/bunga3.png') center/contain no-repeat;
+                        z-index: 5;">
+            </div>
+        </section>
+
+        <!-- WEDDING GIFT SECTION -->
+        <section id="gift" class="bg-green">
+            <h2 class="font-serif">Wedding Gift</h2>
+
+            <p class="text-center mb-8 max-w-md" style="font-size: 0.875rem; line-height: 1.6; margin-left: auto; margin-right: auto;">
+                Restu dan doa dari Anda adalah anugerah yang sangat berarti bagi kami. 
+                Namun, jika memberi adalah ungkapan kasih sayang Anda, Anda dapat memberikannya 
+                secara elektronik.
+            </p>
+
+            <div class="max-w-md" style="margin: 0 auto;">
+                <div class="gift-card">
+                    <div class="gift-text">
+                        <h4>Bank Syariah Indonesia - BSI</h4>
+                        <p>Dian Rezki Fadhilla<br/>7232533921</p>
+                    </div> 
+                    <button class="btn-copy" onclick="copyText('7232533921')">📋 Salin</button>
+                </div>
+
+                <div class="gift-card">
+                    <div class="gift-text">
+                        <h4>Bank Syariah Indonesia - BSI</h4>
+                        <p>Susangga<br/>7232533921</p>
+                    </div>
+                    <button class="btn-copy" onclick="copyText('7232533921')">📋 Salin</button>
+                </div>
+
+                <div class="gift-card">
+                    <div class="gift-text">
+                        <h4>Kirim Hadiah</h4>
+                        <p>Susangga/Dian Rezki Fadhilla<br/>
+                           Jl. Air Dingin, Kel. Air Panas, Kec. Tebet<br/>
+                           Ruyuk, Tebet</p>
+                    </div>
+                    <button class="btn-copy" onclick="copyText('Jl. Air Dingin, Kel. Air Panas, Kec. Tebet, Ruyuk, Tebet')">📋 Salin</button>
+                </div>
+            </div>
+
+            <div style="position: absolute;
+                        bottom: 795px;
+                        right: -200px;
+                        width: 400px;
+                        height: 320px;
+                        background: url('images/bunga1.png') center/contain no-repeat;
+                        z-index: 25;">
+            </div>
+
+            <div style="position: absolute;
+                        bottom: -90px;
+                        left: 2px;
+                        transform: translateX(-50%);
+                        width: 400px;
+                        height: 320px;
+                        background: url('images/bunga1.png') center/contain no-repeat;
+                        z-index: 25;">
+            </div>
+
+            <div class="paper-ripped-bottom"></div>
+        </section>
+
+        <!-- BEST WISHES SECTION -->
+        <section id="wishes" class="bg-cream">
+            
+            <h2 class="font-serif">Best Wishes</h2>
+
+            <form class="wish-form" onsubmit="submitWish(event)">
+                <input type="text" id="wish-name" placeholder="Aisyah Nur" required>
+                
+                <select id="wish-attendance" required>
+                    <option value="">Konfirmasi Kehadiran</option>
+                    <option value="hadir">Hadir</option>
+                    <option value="tidak-hadir">Tidak Hadir</option>
+                    <option value="ragu">Masih Ragu</option>
+                </select>
+
+                <textarea id="wish-message" placeholder="Tulis Doa dan Harapan..." required></textarea>
+
+                <button type="submit" class="btn-submit">💬 Kirim</button>
+            </form>
+
+            <div id="wishes-list" class="max-w-md">
+                
+            </div>
+
+            <div id="pagination-controls" class="text-center mb-8" style="margin-top: 1rem; display: flex; justify-content: center; gap: 10px;">
+            
+            </div>
+
+            <div style="position: absolute;
+                        bottom: -190px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 400px;
+                        height: 320px;
+                        background: url('images/bunga1.png') center/contain no-repeat;
+                        z-index: 25;">
+            </div>
+
+            <div class="paper-ripped-bottom"></div>
+        </section>
+
+        <!-- FOOTER -->
+        <section class="bg-green" id="footer">
+            <p class="text-center mb-8 max-w-md" style="font-size: 0.875rem; line-height: 1.6; margin-left: auto; margin-right: auto; margin-top: 150px;">
+                Merupakan suatu kebahagiaan dan kehormatan bagi kami, apabila 
+                Bapak/Ibu/Saudara/i, berkenan hadir dan memberikan doa restu kepada kami
+            </p>
+
+            <p class="text-center mb-4" style="font-size: 0.875rem;">Kami Yang Berbahagia,</p>
+
+            <div class="footer-couple-img">
+                <img src="images/nama.png" alt="Sangga & Dhilla">
+            </div>
+
+            <div style="position: absolute;
+                        bottom: -250px;
+                        right: -200px;
+                        transform: rotate(90deg);
+                        width: 400px;
+                        height: 320px;
+                        background: url('images/bunga2.png') center/contain no-repeat;
+                        z-index: 25;">
+            </div>
+
+            <div style="position: absolute;
+                        bottom: -250px;
+                        left: -200px;
+                        transform: rotate(-90deg) scaleX(-1);
+                        width: 400px;
+                        height: 320px;
+                        background: url('images/bunga2.png') center/contain no-repeat;
+                        z-index: 25;">
+            </div>
+
+            <p class="text-center" style="font-size: 0.75rem; opacity: 0.7;">© Azzahra</p>
+        </section>
+
+    </div>
+
+    <script>
+        // --- 1. VARIABEL GLOBAL ---
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        let isPlaying = false;
+
+        function getGuestName() {
+            // Ambil parameter '?to=' dari URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const guestName = urlParams.get('to'); 
+            
+            // Target elemen HTML yang mau diubah
+            const guestElement = document.querySelector('.guest-name');
+            const inputName = document.getElementById('wish-name');
+
+            if (guestName) {
+                // Jika ada ?to=..., ganti teksnya
+                guestElement.textContent = guestName;
+                // Otomatis isi nama di form ucapan juga biar praktis
+                if(inputName) inputName.value = guestName; 
+            } else {
+                // Jika tidak ada, pakai default
+                guestElement.textContent = "Tamu Undangan"; 
+            }
+        }
+
+        // Panggil fungsi ini saat halaman dimuat
+        window.onload = function() {
+            getGuestName();
+            renderWishes(); // (Nanti untuk pagination)
+        };
+
+        // --- 2. FUNGSI BUKA UNDANGAN ---
+        function openInvitation() {
+            const cover = document.getElementById('cover-page');
+            const main = document.getElementById('main-content');
+            
+            // PENTING: Class ini yang memicu navigasi muncul di CSS
+            document.body.classList.add('opened');
+            
+            cover.classList.add('hidden');
+            
+            setTimeout(() => {
+                main.classList.add('show');
+            }, 800);
+
+            // Putar musik otomatis saat dibuka
+            playMusic();
+        }
+
+        // --- 3. FUNGSI SCROLL NAVIGASI ---
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // --- 4. FUNGSI MUSIK ---
+        function playMusic() {
+            music.play().catch(error => {
+                console.log("Autoplay dicegah browser, perlu interaksi user.");
+            });
+            isPlaying = true;
+            if(musicBtn) {
+                musicBtn.innerHTML = "🎵"; 
+                musicBtn.classList.add('playing');
+            }
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                isPlaying = false;
+                musicBtn.innerHTML = "🔇";
+                musicBtn.classList.remove('playing');
+            } else {
+                music.play();
+                isPlaying = true;
+                musicBtn.innerHTML = "🎵";
+                musicBtn.classList.add('playing');
+            }
+        }
+
+        // --- 5. FUNGSI HITUNG MUNDUR (COUNTDOWN) ---
+        function updateCountdown() {
+            // Pastikan tanggal sesuai target: 8 Feb 2026
+            const weddingDate = new Date('2026-02-08T08:00:00').getTime();
+            const now = new Date().getTime();
+            const difference = weddingDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            }
+        }
+        // Jalankan countdown
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- 6. FUNGSI SALIN TEKS ---
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Berhasil disalin: ' + text);
+            });
+        }
+
+        // --- 7. FUNGSI KIRIM UCAPAN ---
+        function submitWish(event) {
+            event.preventDefault(); // Mencegah reload halaman
+            
+            const name = document.getElementById('wish-name').value;
+            const message = document.getElementById('wish-message').value;
+
+            // Buat kartu ucapan baru
+            const wishCard = document.createElement('div');
+            wishCard.className = 'wish-card';
+            wishCard.innerHTML = `
+                <h4>${name}</h4>
+                <p>${message}</p>
+            `;
+
+            // Masukkan ke daftar paling atas
+            const wishList = document.getElementById('wishes-list');
+            wishList.insertBefore(wishCard, wishList.firstChild);
+
+            // Reset form
+            event.target.reset();
+            alert('Terima kasih atas doa dan ucapannya! 🙏');
+        }
+
+        // Nanti kalau sudah pro, data ini diambil dari Database
+    let wishesData = [
+        { name: "Keluarga Tama", message: "Barakallah, sakinah mawaddah warahmah." },
+        { name: "Terang Jakarta", message: "Semoga Allah senantiasa melimpahkan rahmat-Nya." },
+        { name: "Aisyah Nur", message: "Selamat menempuh hidup baru dan wajib bahagia ya!" },
+        { name: "Andi", message: "Selamat ya bro!" },
+        { name: "Siti", message: "Semoga lancar sampai hari H." },
+        { name: "Budi", message: "Doa terbaik untuk kalian." }, // Data ke-6 (Halaman 2)
+    ];
+
+    let currentPage = 1;
+    const itemsPerPage = 5;
+
+// --- FUNGSI RENDER (TAMPILKAN) UCAPAN ---
+        function renderWishes() {
+            const listContainer = document.getElementById('wishes-list');
+            const paginationContainer = document.getElementById('pagination-controls');
+            
+            // 1. Bersihkan tampilan lama
+            listContainer.innerHTML = "";
+            paginationContainer.innerHTML = "";
+
+            // 2. Hitung batasan data
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageData = wishesData.slice(startIndex, endIndex);
+
+            // 3. Tampilkan Bubble Chat
+            pageData.forEach(wish => {
+                const card = document.createElement('div');
+                card.className = 'wish-card';
+                // Animasi masuk halus (opsional)
+                card.style.animation = "fadeIn 0.5s ease"; 
+                card.innerHTML = `<h4>${wish.name}</h4><p>${wish.message}</p>`;
+                listContainer.appendChild(card);
+            });
+
+            // 4. Buat Tombol Pagination
+            const totalPages = Math.ceil(wishesData.length / itemsPerPage);
+
+            // Jika halamannya cuma 1, tidak perlu munculkan tombol
+            if (totalPages <= 1) return;
+
+            // Tombol Previous (<<)
+            if (currentPage > 1) {
+                const prevBtn = createPageBtn('<<', () => changePage(currentPage - 1));
+                paginationContainer.appendChild(prevBtn);
+            }
+
+            // Angka Halaman
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = createPageBtn(i, () => changePage(i));
+                
+                // Tambahkan class .active jika ini halaman yang sedang dibuka
+                if (i === currentPage) {
+                    btn.classList.add('active'); 
+                }
+                paginationContainer.appendChild(btn);
+            }
+
+            // Tombol Next (>>)
+            if (currentPage < totalPages) {
+                const nextBtn = createPageBtn('>>', () => changePage(currentPage + 1));
+                paginationContainer.appendChild(nextBtn);
+            }
+        }
+
+        // Helper bikin tombol (VERSI BARU - LEBIH BERSIH)
+        function createPageBtn(text, onClick) {
+            const btn = document.createElement('button');
+            btn.innerText = text;
+            btn.onclick = onClick;
+            // Gunakan class CSS yang kita buat tadi
+            btn.className = 'btn-page'; 
+            return btn;
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            renderWishes(); // Render ulang saat pindah halaman
+        }
+
+        // --- UPDATE FUNGSI KIRIM UCAPAN ---
+        function submitWish(event) {
+            event.preventDefault(); 
+            
+            const name = document.getElementById('wish-name').value;
+            const message = document.getElementById('wish-message').value;
+
+            // Masukkan data baru ke paling atas array (unshift)
+            wishesData.unshift({ name: name, message: message });
+
+            // Reset ke halaman 1 supaya ucapan baru terlihat
+            currentPage = 1;
+            renderWishes();
+
+            event.target.reset();
+            alert('Terima kasih! Ucapan berhasil dikirim.');
+        }
+    </script>
+
+</body>
+</html>
