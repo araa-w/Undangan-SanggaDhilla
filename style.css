@@ -904,8 +904,6 @@ h2 {
         font-size: 0.7rem !important;
     }
 
-    
-
     /* 4. PERBAIKAN BUBBLE UCAPAN (WISHES) SEMPIT */
     section#wishes {
         padding-left: 2rem !important; /* Kurangi padding section */
@@ -963,5 +961,49 @@ h2 {
         margin-top: 0.5rem;
         text-align: center;
         padding: 0.4rem;
+    }
+
+    /* 1. Bunga Atas (yang menutupi "Awal Bertemu") */
+    /* Di HTML kamu pakai bottom: 440px. Kita ganti posisinya biar naik ke atas judul */
+    div[style*="bottom: 440px"] {
+        bottom: auto !important; /* Matikan posisi bawah */
+        top: -25px !important;       /* Pindah ke paling atas section */
+        
+        height: 120px !important;
+        margin-top: -60px !important; /* Tarik naik setengah biar estetik */
+    }
+
+    /* 2. Bunga Bawah (yang menutupi "Pernikahan") */
+    /* Ini sebenarnya bunga dari section Gift (bottom: 870px) yang "bocor" ke atas */
+    div[style*="bottom: 870px"] {
+        bottom: auto !important;
+        top: -75px !important;      /* Reset ke atas section Gift */
+        right: -220px !important; /* Tempel di kanan */
+        margin-top: -50px !important; /* Biar nangkring di perbatasan kertas */
+    }
+
+    #time-place{
+        min-height: auto;
+        height: auto;
+        padding: 1rem 1.5rem 4rem 1.5rem;
+    }y
+
+    .countdown {
+        gap: 0.5rem !important; /* Rapatkan jarak antar kotak */
+        margin: 1.5rem 0 !important;
+    }
+    
+    .countdown-item {
+        padding: 0.8rem 0.5rem !important; /* Kotaknya jadi lebih ramping */
+        width: 80px !important; /* Lebar fix biar seragam */
+    }
+
+    .countdown-item .number {
+        font-size: 1.5rem !important; /* Angka tidak terlalu raksasa */
+        margin-bottom: 0.2rem !important;
+    }
+
+    .countdown-item .label {
+        font-size: 0.7rem !important; /* Tulisan 'Hari/Jam' lebih kecil */
     }
 }
