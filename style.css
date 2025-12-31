@@ -14,6 +14,10 @@
     box-sizing: border-box;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden !important; /* Ini pisau pemotongnya */
+}
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -274,22 +278,35 @@ section {
     position: relative;
 }
 
+#bride-groom{
+    min-height: auto;
+    height: auto;
+    padding: 2rem 1.5rem 15rem 1.5rem;
+}
+
 #love-story{
     min-height: auto;
     height: auto;
-    padding: 2rem 1.5rem 8rem 1.5rem;
+    padding: 3rem 1.5rem 4rem 1.5rem;
 }
 
 #gift{
     min-height: auto;
     height: auto;
-    padding: 9rem 1.5rem 15rem 1.5rem;
+    padding: 9rem 1.5rem 11rem 1.5rem;
 }
 
 #footer{
+    position: relative;
     min-height: auto;
     height: auto;
-    padding: 1rem 1.5rem 2rem 1.5rem;
+    
+    /* PADDING BAWAH 10rem (sekitar 160px) */
+    /* Ini memberi ruang kosong di bawah khusus untuk bunga */
+    padding: 3rem 1.5rem 5rem 1.5rem !important;
+    
+    /* Agar bunga yang offside terpotong rapi */
+    overflow: hidden;
 }
 
 /* SECTION BACKGROUNDS */
@@ -347,9 +364,9 @@ div[style*="url('images/bunga"] {
 #bride-groom::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -2px;
     left: 0;
-    right: 0;
+    right: -1px;
     height: 100px;
     background: url('images/toprip-hijau.png') bottom center/cover no-repeat;
     z-index: 20;
@@ -763,12 +780,12 @@ h2 {
 /* UTILITIES */
 .footer-couple-img {
     text-align: center; /* Memastikan gambar ada di tengah */
-    margin-bottom: 2rem; /* Jarak ke hiasan bunga di bawahnya */
+    margin-bottom: 3rem; /* Jarak ke hiasan bunga di bawahnya */
     margin-top: 1rem;    /* Jarak dari teks "Kami Yang Berbahagia" */
 }
 
 .footer-couple-img img {
-    max-width: 250px; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
+    max-width: 150px; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
     width: 100%;      /* Agar mengecil otomatis jika layar sangat sempit */
     height: auto;     /* Menjaga proporsi gambar */
     display: inline-block;
@@ -862,79 +879,89 @@ h2 {
     }
 }
 
-/* --- KHUSUS LAYAR KECIL (iPhone 8 / SE / Android Kecil) --- */
-@media screen and (max-width: 390px) {
+/* --- ZONA KHUSUS MOBILE (IPHONE 8, SE, ANDROID) --- */
+@media screen and (max-width: 480px) {
 
-    /* 1. KECILKAN FONT */
+    /* 1. KECILKAN FONT HEADER & NAMA */
     h1.header-names, 
     .couple-names {
-        font-size: 2.5rem !important; /* Turun dari 4rem */
+        font-size: 2.2rem !important; /* Turun drastis dari 4rem */
+        margin-bottom: 0.5rem !important;
     }
 
     h2 {
-        font-size: 1.8rem !important; /* Turun dari 2.5rem */
+        font-size: 1.6rem !important; /* Judul section lebih kalem */
         margin-bottom: 1.5rem;
     }
 
-    p {
-        font-size: 0.8rem !important; /* Teks paragraf lebih kecil */
+    .small-title {
+        font-size: 0.75rem !important;
+        letter-spacing: 1px !important;
+        margin-bottom: 2rem !important;
     }
 
-    /* 2. ATUR ULANG PADDING SECTION (Biar lega) */
-    section {
-        /* Kiri dikurangi jadi 3.5rem biar nav tetap muat tapi teks geser kiri */
-        padding: 3rem 1rem 3rem 3.5rem !important; 
+    p{
+        font-size: 0.7rem !important;
     }
 
-    /* 3. PERKECIL UKURAN BUNGA (Agar tidak tumpang tindih) */
-    /* Target semua div yang punya background image bunga */
-    div[style*="width: 300px"], 
-    div[style*="width: 400px"],
-    div[style*="width: 420px"] {
-        /* Paksa ukuran jadi lebih kecil proporsional */
-        width: 180px !important; 
-        height: 140px !important;
-    }
-
-    /* Khusus Bunga Header (Tengah Atas/Bawah) */
-    div[style*="translateX(-50%)"] {
-        width: 220px !important;
-        height: 160px !important;
-    }
     
-    /* 4. ATUR POSISI BUNGA YANG OFFSIDE */
-    /* Tarik bunga yang terlalu pinggir supaya masuk */
-    div[style*="right: -180px"],
-    div[style*="right: -140px"] {
-        right: -60px !important; /* Jangan terlalu keluar */
+
+    /* 4. PERBAIKAN BUBBLE UCAPAN (WISHES) SEMPIT */
+    section#wishes {
+        padding-left: 2rem !important; /* Kurangi padding section */
+        padding-right: 2rem !important;
     }
 
-    div[style*="left: -180px"],
-    div[style*="left: -130px"] {
-        left: -60px !important;
+    .wish-card {
+        padding: 1rem !important; /* Kurangi padding dalam kartu */
+        margin-bottom: 0.8rem;
     }
-    
+
+    .wish-card h4 {
+        font-size: 0.9rem; /* Nama pengirim agak kecil */
+    }
+
+    .wish-card p {
+        font-size: 0.8rem; /* Pesan lebih compact */
+        line-height: 1.4;
+    }
+
+    /* Form Input juga dirapikan */
+    .wish-form input, 
+    .wish-form select, 
+    .wish-form textarea {
+        padding: 0.6rem;
+        font-size: 0.85rem;
+    }
+
     /* 5. NAVIGASI LEBIH RAMPING */
     .sticky-nav {
-        padding: 15px 5px 15px 0px !important; /* Rampingkan padding */
-        gap: 10px !important;
+        padding: 12px 0px 12px 0px !important;
+        width: 45px; /* Lebar fix */
+        border-radius: 0 15px 15px 0;
     }
     
     .nav-icon {
-        width: 30px !important; /* Ikon lebih kecil */
-        height: 30px !important;
-        font-size: 1rem !important;
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* 6. GIFT CARD (Supaya Tombol Salin Rapi) */
+    .gift-card {
+        padding: 2rem;
+        flex-direction: column; /* Susun atas-bawah */
+        align-items: flex-start;
     }
     
-    /* 6. GIFT CARD (Biar tombol salin tidak gepeng) */
-    .gift-card {
-        flex-direction: column; /* Jadi atas bawah saja biar rapi */
-        align-items: flex-start;
-        gap: 0.5rem;
+    .gift-text p {
+        font-size: 0.8rem !important;
     }
+
     .btn-copy {
-        align-self: flex-end; /* Tombol pindah ke kanan bawah kartu */
-        width: 100%;
+        width: 100%; /* Tombol lebar penuh */
+        margin-top: 0.5rem;
         text-align: center;
+        padding: 0.4rem;
     }
 }
