@@ -294,7 +294,7 @@ section {
 #gift{
     min-height: auto;
     height: auto;
-    padding: 9rem 1.5rem 11rem 1.5rem;
+    padding: 7rem 1.5rem 11rem 1.5rem;
 }
 
 #footer{
@@ -707,12 +707,12 @@ h2 {
 .gift-card h4 {
     font-weight: 600;
     margin-bottom: 0.25rem; /* Sedikit dirapatkan */
-    font-size: 1rem; /* Opsional: sesuaikan ukuran font judul */
+    font-size: 0.775rem; /* Opsional: sesuaikan ukuran font judul */
     color: #264b09;
 }
 
 .gift-card p {
-    font-size: 0.875rem;
+    font-size: 0.675rem;
     margin-bottom: 0; /* Hapus margin bawah karena sudah di tengah */
     line-height: 1.4;
     color: #264b09;
@@ -805,7 +805,7 @@ h2 {
 }
 
 .footer-couple-img img {
-    max-width: 390px; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
+    max-width: 130px; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
     width: 100%;      /* Agar mengecil otomatis jika layar sangat sempit */
     height: auto;     /* Menjaga proporsi gambar */
     display: inline-block;
