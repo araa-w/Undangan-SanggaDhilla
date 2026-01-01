@@ -282,13 +282,13 @@ section {
 #bride-groom{
     min-height: auto;
     height: auto;
-    padding: 2rem 1.5rem 15rem 1.5rem;
+    padding: 2rem 1.5rem 11rem 1.5rem;
 }
 
 #love-story{
     min-height: auto;
     height: auto;
-    padding: 3rem 1.5rem 4rem 1.5rem;
+    padding: 1rem 1.5rem 4rem 1.5rem;
 }
 
 #gift{
@@ -308,6 +308,12 @@ section {
     
     /* Agar bunga yang offside terpotong rapi */
     overflow: hidden;
+}
+
+#time-place{
+    min-height: auto;
+    height: auto;
+    padding: 1rem 1.5rem 5rem 1.5rem;
 }
 
 /* SECTION BACKGROUNDS */
@@ -828,12 +834,13 @@ h2 {
     /* POSISI KE BAWAH: Tarik gambar ke bawah sejauh 4rem (sesuai padding bawah section) */
     /* Ini akan membuat gambar turun dan tertutup efek sobekan kertas */
     margin-bottom: -4rem; 
+    margin-top: -5rem;
 
     /* PENTING: Matikan batas lebar maksimal agar bisa melebar penuh */
     max-width: none;
     
     /* Atur tinggi gambar (bisa diubah sesuai selera, misal 450px) */
-    height: 400px;
+    height: 500px;
     
     /* Hapus sudut melengkung agar terlihat menyatu dengan layar */
     border-radius: 0;
