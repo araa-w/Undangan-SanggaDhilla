@@ -868,7 +868,7 @@ h2 {
     background: #FFE4B5;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 380px) {
     .cover-content h1 {
         font-size: 3rem;
     }
