@@ -79,7 +79,7 @@ body {
 }
 
 .cover-content p.subtitle {
-    font-size: 1.275rem;
+    font-size: 1.175rem;
     letter-spacing: 0.2em;
     margin-bottom: 1rem;
 }
@@ -91,7 +91,7 @@ body {
 }
 
 .cover-content .date {
-    font-size: 1.275rem;
+    font-size: 1.175rem;
     margin-top: 1rem;
     margin-bottom: 3rem;
 }
@@ -792,7 +792,7 @@ h2 {
 }
 
 .couple-img img{
-    max-width: 390px; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
+    max-width: 350px; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
     width: 100%;      /* Agar mengecil otomatis jika layar sangat sempit */
     height: auto;     /* Menjaga proporsi gambar */
     display: inline-block;
@@ -899,12 +899,12 @@ h2 {
     /* 1. KECILKAN FONT HEADER & NAMA */
     h1.header-names, 
     .couple-names {
-        font-size: 2.2rem !important; /* Turun drastis dari 4rem */
+        font-size: 1.2rem !important; /* Turun drastis dari 4rem */
         margin-bottom: 0.5rem !important;
     }
 
     h2 {
-        font-size: 1.6rem !important; /* Judul section lebih kalem */
+        font-size: 1.5rem !important; /* Judul section lebih kalem */
         margin-bottom: 1.5rem;
     }
 
