@@ -79,7 +79,7 @@ body {
 }
 
 .cover-content p.subtitle {
-    font-size: 0.975rem;
+    font-size: 1.275rem;
     letter-spacing: 0.2em;
     margin-bottom: 1rem;
 }
@@ -91,15 +91,15 @@ body {
 }
 
 .cover-content .date {
-    font-size: 0.975rem;
+    font-size: 1.275rem;
     margin-top: 1rem;
     margin-bottom: 3rem;
 }
 
 .cover-content .guest-name {
-    font-size: 1.25rem;
+    font-size: 1.50rem;
     font-style: italic;
-    margin: 1rem 0;
+    margin: 2rem 0;
 }
 
 .btn-open {
