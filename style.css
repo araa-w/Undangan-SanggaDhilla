@@ -785,7 +785,7 @@ h2 {
 }
 
 .footer-couple-img img {
-    max-width: 150px; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
+    max-width: 390px; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
     width: 100%;      /* Agar mengecil otomatis jika layar sangat sempit */
     height: auto;     /* Menjaga proporsi gambar */
     display: inline-block;
