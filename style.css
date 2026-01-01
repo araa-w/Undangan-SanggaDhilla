@@ -894,7 +894,7 @@ h2 {
 }
 
 /* --- ZONA KHUSUS MOBILE (IPHONE 8, SE, ANDROID) --- */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 410px) {
 
     /* 1. KECILKAN FONT HEADER & NAMA */
     h1.header-names, 
