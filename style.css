@@ -316,6 +316,48 @@ section {
     padding: 1rem 1.5rem 5rem 1.5rem;
 }
 
+/* --- DRESSCODE SECTION --- */
+#dresscode {
+    min-height: auto;
+    height: auto;
+    padding: 1rem 1.5rem 11rem 1.5rem; /* Padding bawah agak besar buat bunga */
+}
+
+.dresscode-palette {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.color-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.color-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Bayangan biar timbul */
+    border: 3px solid white; /* Border putih biar rapi */
+    transition: transform 0.3s ease;
+}
+
+.color-circle:hover {
+    transform: scale(1.1); /* Efek membesar saat disentuh */
+}
+
+.color-item p {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #f2ece0; /* Warna teks hijau tema */
+    font-family: 'Montserrat', sans-serif;
+}
+
 /* SECTION BACKGROUNDS */
 .bg-cream {
     background: var(--bg-cream) !important;
@@ -397,6 +439,11 @@ div[style*="url('images/bunga"] {
     z-index: 2;
     pointer-events: none;
 }
+
+#time-place .paper-ripped-bottom {
+    background: url('images/toprip-hijau.png') center bottom/cover no-repeat;
+}
+
 
 #wishes::after {
     content: '';
