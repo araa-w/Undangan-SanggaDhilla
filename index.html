@@ -19,7 +19,7 @@
             <p class="date font-serif">Minggu, 08 Februari 2026</p>
             <p class="font-serif" style="font-size: 1.175rem;">Kepada Yth :</p>
             <p class="font-serif" style="font-size: 1.175rem;">Bpk/Ibu/Saudara/i</p>
-            <p class="guest-name font-serif">Aisyah Nur</p>
+            <p class="guest-name font-serif"></p>
             <button class="btn-open" onclick="openInvitation()">✉ Buka Undangan</button>
         </div>
     </div>
@@ -423,23 +423,29 @@
         let currentPage = 1;
         const itemsPerPage = 5;
 
+        // --- FUNGSI NAMA TAMU OTOMATIS ---
         function getGuestName() {
-            // Ambil parameter '?to=' dari URL
+            // 1. Ambil parameter dari Link (URL)
             const urlParams = new URLSearchParams(window.location.search);
             const guestName = urlParams.get('to'); 
             
-            // Target elemen HTML yang mau diubah
-            const guestElement = document.querySelector('.guest-name');
-            const inputName = document.getElementById('wish-name');
+            // 2. Cari elemen HTML yang mau diubah tulisannya
+            const guestLabel = document.querySelector('.guest-name'); // Tulisan di Cover
+            const inputName = document.getElementById('wish-name');   // Kotak Form Ucapan
 
+            // 3. Jika ada nama di link, ubah tulisannya
             if (guestName) {
-                // Jika ada ?to=..., ganti teksnya
-                guestElement.textContent = guestName;
-                // Otomatis isi nama di form ucapan juga biar praktis
-                if(inputName) inputName.value = guestName; 
-            } else {
-                // Jika tidak ada, pakai default
-                guestElement.textContent = "Tamu Undangan"; 
+                // Ganti nama di Cover
+                if(guestLabel) {
+                    guestLabel.textContent = guestName;
+                }
+                
+                // Otomatis isi nama di Form Ucapan (biar tamu gak capek ngetik)
+                if(inputName) {
+                    inputName.value = guestName; 
+                    // Opsional: Kunci biar gak bisa diubah
+                    // inputName.readOnly = true; 
+                }
             }
         }
 
@@ -615,7 +621,7 @@
                 }
 
                 // Tampilkan emoji di sebelah nama
-                let attendanceBadge = emoji ? `<span style="font-size:0.9rem; margin-left:5px;">${emoji}</span>` : '';
+                let attendanceBadge = emoji ? `<span style="font-size:0.7rem; margin-left:2px;">${emoji}</span>` : '';
 
                 // --- BAGIAN INI YANG KEMARIN HILANG ---
                 card.innerHTML = `<h4>${wish.name} ${attendanceBadge}</h4><p>${wish.message}</p>`;

@@ -305,6 +305,7 @@ section {
     /* PADDING BAWAH 10rem (sekitar 160px) */
     /* Ini memberi ruang kosong di bawah khusus untuk bunga */
     padding: 3rem 1.5rem 5rem 1.5rem !important;
+    /* padding-bottom: 2rem !important; */
     
     /* Agar bunga yang offside terpotong rapi */
     overflow: hidden;
@@ -759,7 +760,7 @@ h2 {
 }
 
 .gift-card p {
-    font-size: 0.675rem;
+    font-size: 0.85rem;
     margin-bottom: 0; /* Hapus margin bawah karena sudah di tengah */
     line-height: 1.4;
     color: #264b09;
@@ -948,13 +949,20 @@ h2 {
 }
 
 /* --- ZONA KHUSUS MOBILE (IPHONE 8, SE, ANDROID) --- */
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 480px) {
 
     /* 1. KECILKAN FONT HEADER & NAMA */
-    h1.header-names, 
-    .couple-names {
-        font-size: 1.2rem !important; /* Turun drastis dari 4rem */
-        margin-bottom: 0.5rem !important;
+    .couple-img{
+    text-align: center; /* Memastikan gambar ada di tengah */
+    margin-bottom: 1rem; /* Jarak ke hiasan bunga di bawahnya */
+    margin-top: 1rem; 
+}
+
+    .couple-img img{
+        max-width: 280px; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
+        width: 100%;      /* Agar mengecil otomatis jika layar sangat sempit */
+        height: auto;     /* Menjaga proporsi gambar */
+        display: inline-block;
     }
 
     h2 {
@@ -966,10 +974,6 @@ h2 {
         font-size: 0.75rem !important;
         letter-spacing: 1px !important;
         margin-bottom: 2rem !important;
-    }
-
-    p{
-        font-size: 0.7rem !important;
     }
 
     /* 4. PERBAIKAN BUBBLE UCAPAN (WISHES) SEMPIT */
@@ -984,12 +988,7 @@ h2 {
     }
 
     .wish-card h4 {
-        font-size: 0.9rem; /* Nama pengirim agak kecil */
-    }
-
-    .wish-card p {
-        font-size: 0.8rem; /* Pesan lebih compact */
-        line-height: 1.4;
+        font-size: 0.8rem; /* Nama pengirim agak kecil */
     }
 
     /* Form Input juga dirapikan */
@@ -1020,15 +1019,19 @@ h2 {
         align-items: flex-start;
     }
     
-    .gift-text p {
-        font-size: 0.8rem !important;
-    }
-
     .btn-copy {
         width: 100%; /* Tombol lebar penuh */
-        margin-top: 0.5rem;
+        margin-top: 0.1rem;
         text-align: center;
         padding: 0.4rem;
+    }
+
+    .story-content{
+        padding-right: 1rem;
+    }
+
+    p{
+        font-size: 0.9rem !important; /* Naikkan sedikit */
     }
 
     /* 1. Bunga Atas (yang menutupi "Awal Bertemu") */
@@ -1050,11 +1053,79 @@ h2 {
         margin-top: -50px !important; /* Biar nangkring di perbatasan kertas */
     }
 
+    div[style*="bottom: 450px"]{
+        bottom: auto !important; /* Matikan posisi bawah yang aneh */
+        top: -230px !important;   /* Pindah ke ATAS section */
+        right: -20px !important;
+    }
+
+    div[style*="bottom: 650px"]{
+        bottom: auto !important; /* Matikan posisi bawah yang aneh */
+        top: -140px !important;   /* Pindah ke ATAS section */
+        /* right: -20px !important; */
+    }
+
+    /* Target bunga di footer */
+    #footer div[style*="bottom: 0px"] {
+        bottom: -20px !important; /* Turunin dikit biar ga ngambang */
+    }
+
     #time-place{
         min-height: auto;
         height: auto;
         padding: 1rem 1.5rem 4rem 1.5rem;
-    }y
+    }
+
+    /* 1. PERBAIKAN SECTION AGAR TIDAK SEMPIT */
+    section#gift, section#wishes {
+        padding-left: 2rem !important;  /* Kurangi dari 2rem jadi 1rem */
+        padding-right: 2rem !important;
+    }
+
+    /* 2. PERBAIKAN GIFT CARD (BIAR LANGSING) */
+    .gift-card {
+        padding: 1rem !important;      /* GANTI DARI 2rem JADI 1rem */
+        flex-direction: row !important; /* Balikin ke samping biar hemat tempat */
+        align-items: center !important;
+        gap: 0.8rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+    
+    /* Tombol Salin biar rapi di HP */
+    .btn-copy {
+        width: auto !important;
+        padding: 0.4rem 0.8rem !important;
+        font-size: 0.7rem !important;
+    }
+
+    /* 3. PAKSA TEKS KECIL (OVERRIDE !IMPORTANT) */
+    
+    /* Judul di dalam kartu (Bank/Nama Pengirim) */
+    .gift-text h4, .wish-card h4 {
+        font-size: 0.75rem !important; /* Ukuran pas */
+        margin-bottom: 0.2rem !important;
+    }
+
+    /* Isi teks di dalam kartu (No Rek/Ucapan) */
+    .gift-text p, .wish-card p {
+        font-size: 0.65rem !important; /* KUNCI: Pakai !important buat maksa */
+        line-height: 1.3 !important;
+        margin: 0 !important;
+    }
+
+    /* 4. PERBAIKAN WISH CARD */
+    .wish-card {
+        padding: 1rem !important;
+        margin-bottom: 0.8rem;
+    }
+    
+    /* Form input biar ga kegedean */
+    .wish-form input, 
+    .wish-form select, 
+    .wish-form textarea {
+        padding: 0.6rem;
+        font-size: 0.85rem !important;
+    }
 
     .countdown {
         gap: 0.5rem !important; /* Rapatkan jarak antar kotak */
