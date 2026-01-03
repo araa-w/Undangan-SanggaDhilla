@@ -1018,6 +1018,16 @@ h2 {
         flex-direction: column; /* Susun atas-bawah */
         align-items: flex-start;
     }
+
+    .btn-open {
+        padding: 0.775rem 1.5rem;
+        border-radius: 1rem;
+        cursor: pointer;
+        font-size: 0.675rem;
+        letter-spacing: 0.1em;
+        margin-top: 3rem;
+        transition: transform 0.3s;
+    }
     
     .btn-copy {
         width: 100%; /* Tombol lebar penuh */
