@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation - Sangga & Dhilla</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- COVER PAGE -->
-    <div id="cover-page">
+    <!-- <div id="cover-page">
         <div class="cover-content">
             <p class="subtitle font-serif">Undangan Pernikahan</p>
             <div class="couple-img">
@@ -22,21 +23,49 @@
             <p class="guest-name font-serif"></p>
             <button class="btn-open" onclick="openInvitation()">✉ Buka Undangan</button>
         </div>
-    </div>
-
-    <!-- NAVIGATION -->
-    <!-- <div class="sticky-nav">
-        <div class="nav-icon" onclick="scrollToSection('bride-groom')" title="Mempelai">❤️</div>
-        <div class="nav-icon" onclick="scrollToSection('time-place')" title="Lokasi">📍</div>
-        <div class="nav-icon" onclick="scrollToSection('love-story')" title="Cerita">💕</div>
-        <div class="nav-icon" onclick="scrollToSection('gift')" title="Hadiah">🎁</div>
-        <div class="nav-icon" onclick="scrollToSection('wishes')" title="Ucapan">💬</div>
-        <div class="nav-icon" id="music-btn" onclick="toggleMusic()">🔇</div>
     </div> -->
+
+    <section id="hero" class="h-screen flex flex-col justify-center items-center text-center bg-cream relative overflow-hidden envelope-container">
+
+        <div class="envelope-flap top-flap"></div>
+
+        <div class="envelope-flap bottom-flap"></div>
+        
+        <div class="hero-content-wrapper relative z-10 flex flex-col items-center justify-center h-full w-full">
+
+            <p class="subtitle font-serif">Undangan Pernikahan</p>
+
+            <div class="couple-img">
+                <img src="images/nama.png" alt="Sangga & Dhilla">
+            </div>
+
+            <div class="header-date mb-12">
+                <p class="font-serif" style="font-size: 1.2rem; color: var(--bg-green);">
+                    Minggu, 08 Februari 2026
+                </p>
+            </div>
+        
+            <div class="guest-container mb-12">
+                <p class="font-serif" style="font-size: 1.175rem;">Kepada Yth :</p>
+                <p class="font-serif" style="font-size: 1.175rem;">Bpk/Ibu/Saudara/i</p>
+
+                <div class="guest-box">
+                    <p class="guest-name font-serif"></p>
+                </div>
+            </div>
+
+            <button id="open-btn" class="btn-open" onclick="openInvitation()"">
+                <i class="fas fa-envelope-open mr-2"></i> Buka Undangan
+            </button>
+        </div>
+    </section>
 
     <audio id="bg-music" loop>
         <source src="audio/lagu-pernikahan.mp3" type="audio/mp3">
     </audio>
+    <div id="music-btn" class="floating-music" onclick="toggleMusic()">
+        🎵
+    </div>
 
     <!-- MAIN CONTENT -->
     <div id="main-content">
@@ -70,7 +99,7 @@
             </div>
             
             <div class="max-w-md text-center mb-8">
-                <p class="font-serif" style="font-size: 0.975rem; line-height: 1.6;">
+                <p class="font-serif" style="font-size: 0.975rem; line-height: 1.6;" data-aos="fade-up">
                     Assalamualaikum Warahmatullahi Wabarakatuh<br/><br/>
                     Dengan memohon rahmat dan ridho Allah Swt, kami bermaksud mengundang 
                     Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:
@@ -412,6 +441,16 @@
 
     </div>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        AOS.init({
+            duration: 1000, /* Durasi animasi 1 detik (biar halus) */
+            once: true,     /* Animasi cuma sekali saat scroll ke bawah */
+            offset: 100,    /* Mulai animasi sedikit sebelum elemen muncul */
+        });
+    </script>
+
     <script>
         // --- 1. VARIABEL GLOBAL ---
         const music = document.getElementById('bg-music');
@@ -422,29 +461,30 @@
         let wishesData = []; // Data kosong awal
         let currentPage = 1;
         const itemsPerPage = 5;
+        const openBtn = document.getElementById('open-btn');
 
-        // --- FUNGSI NAMA TAMU OTOMATIS ---
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+        document.body.classList.add('cover-active');
+
+        // --- FUNGSI NAMA TAMU OTOMATIS & KUNCI FORM ---
         function getGuestName() {
-            // 1. Ambil parameter dari Link (URL)
             const urlParams = new URLSearchParams(window.location.search);
             const guestName = urlParams.get('to'); 
             
-            // 2. Cari elemen HTML yang mau diubah tulisannya
-            const guestLabel = document.querySelector('.guest-name'); // Tulisan di Cover
-            const inputName = document.getElementById('wish-name');   // Kotak Form Ucapan
+            const guestLabel = document.querySelector('.guest-name'); 
+            const inputName = document.getElementById('wish-name');   
 
-            // 3. Jika ada nama di link, ubah tulisannya
             if (guestName) {
-                // Ganti nama di Cover
-                if(guestLabel) {
-                    guestLabel.textContent = guestName;
-                }
+                // Ubah Nama di Cover
+                if(guestLabel) guestLabel.textContent = guestName;
                 
-                // Otomatis isi nama di Form Ucapan (biar tamu gak capek ngetik)
+                // Ubah Nama di Form & KUNCI
                 if(inputName) {
                     inputName.value = guestName; 
-                    // Opsional: Kunci biar gak bisa diubah
-                    // inputName.readOnly = true; 
+                    inputName.readOnly = true; 
+                    inputName.style.backgroundColor = "#e9ecef";
+                    inputName.style.fontWeight = "bold";
                 }
             }
         }
@@ -457,20 +497,27 @@
 
         // --- 2. FUNGSI BUKA UNDANGAN ---
         function openInvitation() {
-            const cover = document.getElementById('cover-page');
-            const main = document.getElementById('main-content');
+            // A. Animasi CSS (Buka Amplop)
+            document.body.classList.add('cover-open');
             
-            // PENTING: Class ini yang memicu navigasi muncul di CSS
-            document.body.classList.add('opened');
-            
-            cover.classList.add('hidden');
-            
-            setTimeout(() => {
-                main.classList.add('show');
-            }, 800);
-
-            // Putar musik otomatis saat dibuka
+            // B. Putar Musik
             playMusic();
+
+            // C. Tunggu animasi selesai (1.2 detik), baru bisa scroll
+            setTimeout(() => {
+                document.body.classList.remove('cover-active');
+                document.body.classList.add('cover-opened');
+
+                document.documentElement.style.overflow = ''; // Hapus kunci html
+                document.body.style.overflow = '';        // Hapus kunci body
+                document.body.style.overflowX = 'hidden'; // Tetap jaga biar ga geser samping
+
+                // --- [BARU] REFRESH ANIMASI AOS ---
+                // Biar animasi fade-up sadar kalau kontennya sudah muncul
+                if(typeof AOS !== 'undefined') {
+                    AOS.refresh(); 
+                }
+            }, 1200);
         }
 
         // --- 3. FUNGSI SCROLL NAVIGASI ---
@@ -483,27 +530,26 @@
 
         // --- 4. FUNGSI MUSIK ---
         function playMusic() {
-            music.play().catch(error => {
-                console.log("Autoplay dicegah browser, perlu interaksi user.");
-            });
+            music.play().catch(e => console.log("Audio perlu interaksi user"));
             isPlaying = true;
             if(musicBtn) {
-                musicBtn.innerHTML = "🎵"; 
-                musicBtn.classList.add('playing');
+                musicBtn.innerHTML = "🎵";
+                musicBtn.classList.remove('paused');
             }
         }
 
         function toggleMusic() {
+            const btn = document.getElementById('music-btn');
             if (isPlaying) {
                 music.pause();
                 isPlaying = false;
-                musicBtn.innerHTML = "🔇";
-                musicBtn.classList.remove('playing');
+                btn.innerHTML = "🎵";
+                btn.classList.add('paused');
             } else {
                 music.play();
                 isPlaying = true;
-                musicBtn.innerHTML = "🎵";
-                musicBtn.classList.add('playing');
+                btn.innerHTML = "🎵";
+                btn.classList.remove('paused');
             }
         }
 
@@ -585,6 +631,10 @@
         window.onload = function() {
             getGuestName();
             loadWishes(); // <--- Panggil fungsi load
+
+            // Update Countdown
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
         };
 
 // --- FUNGSI RENDER (TAMPILKAN) UCAPAN ---

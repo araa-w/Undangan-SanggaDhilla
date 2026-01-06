@@ -196,11 +196,9 @@ body.opened .sticky-nav {
 
 /* MAIN CONTENT */
 #main-content {
-    display: none;
-}
-
-#main-content.show {
-    display: block;
+    position: relative;
+    z-index: 1; /* Layer paling bawah */
+    /* Pastikan tidak ada display: none */
 }
 
 #wedding-header {
@@ -1156,3 +1154,153 @@ h2 {
         font-size: 0.7rem !important; /* Tulisan 'Hari/Jam' lebih kecil */
     }
 }
+
+/* --- PERBAIKAN ANIMASI AMPLOP (Taruh Paling Bawah style.css) --- */
+
+/* 1. Kunci Scroll saat cover tertutup */
+html:has(body.cover-active), 
+body.cover-active {
+    overflow: hidden !important; /* Matikan scroll */
+    height: 100vh !important;    /* Kunci tinggi layar */
+    touch-action: none;          /* Matikan geser jari di HP */
+}
+
+/* 2. Container Amplop (BACKGROUND KERTAS DALAM = CREAM) */
+.envelope-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    
+    background: transparent !important; /* PENTING: Jangan ada warna */
+    pointer-events: auto; 
+    transition: all 1s ease-in-out;
+}
+/* 3. Lipatan Amplop (AMPLOP LUAR = HIJAU) */
+.envelope-flap {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    
+    /* HAPUS background-color hijau biar ga ada kotak di belakang PNG */
+    background-color: transparent !important; 
+    
+    background-repeat: no-repeat;
+    background-size: 100% 100%; /* Gambar dipaksa memenuhi lebar layar */
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.top-flap {
+    top: 0;
+    transform-origin: top;
+    height: 75vh; /* Panjangin dikit biar numpuk enak */
+    z-index: 20;  /* LAYER PALING ATAS (Harus lebih tinggi dari bottom) */
+
+    /* Ganti dengan file PNG transparan kamu */
+    background-image: url('images/amplop-atas.png'); 
+
+    /* INI KUNCINYA: DROP SHADOW */
+    /* Membuat bayangan mengikuti bentuk segitiga PNG, bukan kotak div */
+    filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.5)); 
+    
+    border: none; /* Hapus garis border manual */
+}
+
+
+.bottom-flap {
+    bottom: 0;
+    transform-origin: bottom;
+    height: 50vh; /* Setengah layar */
+    z-index: 10;  /* LAYER DI BAWAH TOP FLAP */
+
+    /* Ganti dengan file PNG transparan kamu */
+    background-image: url('images/amplop-bawah.png');
+    
+    /* Shadow halus ke atas biar berdimensi */
+    filter: drop-shadow(0px -5px 10px rgba(0, 0, 0, 0.2));
+
+    border: none;
+}
+
+/* 4. Konten Teks Cover (HARUS PUTIH & DI ATAS AMPLOP) */
+.hero-content-wrapper {
+    position: relative;
+    z-index: 30; /* Lebih tinggi dari top-flap (20) */
+    transition: opacity 0.8s ease-out;
+}
+
+/* Paksa semua teks di cover jadi PUTIH */
+.hero-content-wrapper p,
+.hero-content-wrapper h1,
+.hero-content-wrapper h3,
+.hero-content-wrapper i,
+.hero-content-wrapper span,
+.hero-content-wrapper .guest-name {
+    color: #ffffff !important; 
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Tombol Buka Undangan */
+#open-btn {
+    background: #ffffff !important;
+    color: var(--bg-green) !important;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 20;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+/* 5. LOGIKA SAAT TERBUKA (ANIMASI) */
+body.cover-open .top-flap {
+    transform: translateY(-100%); /* Geser ke atas mentok */
+}
+
+body.cover-open .bottom-flap {
+    transform: translateY(100%); /* Geser ke bawah mentok */
+}
+
+body.cover-open .hero-content-wrapper {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+body.cover-opened .envelope-container {
+    visibility: hidden; /* Hilangkan amplop setelah terbuka */
+    pointer-events: none;
+}
+
+/* --- TOMBOL MUSIK FLOATING (PENGGANTI NAVIGASI) --- */
+.floating-music {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    z-index: 990; 
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid var(--bg-green);
+    font-size: 1.2rem;
+    animation: spin 4s linear infinite;
+    visibility: hidden; 
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+body.cover-opened .floating-music {
+    visibility: visible;
+    opacity: 1;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+.floating-music.paused { animation-play-state: paused; }
