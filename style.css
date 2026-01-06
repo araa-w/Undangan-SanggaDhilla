@@ -844,7 +844,7 @@ h2 {
 }
 
 .couple-img img{
-    max-width: 350px; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
+    max-width: 500px; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
     width: 100%;      /* Agar mengecil otomatis jika layar sangat sempit */
     height: auto;     /* Menjaga proporsi gambar */
     display: inline-block;
@@ -957,7 +957,7 @@ h2 {
 }
 
     .couple-img img{
-        max-width: 280px; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
+        max-width: 380px; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
         width: 100%;      /* Agar mengecil otomatis jika layar sangat sempit */
         height: auto;     /* Menjaga proporsi gambar */
         display: inline-block;
@@ -1195,7 +1195,7 @@ body.cover-active {
 .top-flap {
     top: 0;
     transform-origin: top;
-    height: 75vh; /* Panjangin dikit biar numpuk enak */
+    height: 80vh; /* Panjangin dikit biar numpuk enak */
     z-index: 20;  /* LAYER PALING ATAS (Harus lebih tinggi dari bottom) */
 
     /* Ganti dengan file PNG transparan kamu */
@@ -1212,7 +1212,7 @@ body.cover-active {
 .bottom-flap {
     bottom: 0;
     transform-origin: bottom;
-    height: 50vh; /* Setengah layar */
+    height: 60vh; /* Setengah layar */
     z-index: 10;  /* LAYER DI BAWAH TOP FLAP */
 
     /* Ganti dengan file PNG transparan kamu */
@@ -1240,6 +1240,27 @@ body.cover-active {
 .hero-content-wrapper .guest-name {
     color: #ffffff !important; 
     text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.guest-box{
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+#cover{
+    margin-top: 150px ; 
+    margin-bottom: 70px;
+}
+
+#cover img{
+    max-width: 250px; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
+    width: 100%;      /* Agar mengecil otomatis jika layar sangat sempit */
+    height: auto;     /* Menjaga proporsi gambar */
+    display: inline-block;
+}
+
+.cover-date{
+    margin-top: 240px;
 }
 
 /* Tombol Buka Undangan */

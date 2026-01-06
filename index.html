@@ -31,11 +31,11 @@
 
         <div class="envelope-flap bottom-flap"></div>
         
-        <div class="hero-content-wrapper relative z-10 flex flex-col items-center justify-center h-full w-full">
+        <!-- <div class="hero-content-wrapper relative z-10 flex flex-col items-center justify-center h-full w-full">
 
             <p class="subtitle font-serif">Undangan Pernikahan</p>
 
-            <div class="couple-img">
+            <div class="couple-img mb-12">
                 <img src="images/nama.png" alt="Sangga & Dhilla">
             </div>
 
@@ -50,14 +50,32 @@
                 <p class="font-serif" style="font-size: 1.175rem;">Bpk/Ibu/Saudara/i</p>
 
                 <div class="guest-box">
-                    <p class="guest-name font-serif"></p>
+                    <p class="guest-name font-serif"  style="font-size: 1.175rem;">Tamu Undangan</p>
                 </div>
             </div>
 
             <button id="open-btn" class="btn-open" onclick="openInvitation()"">
                 <i class="fas fa-envelope-open mr-2"></i> Buka Undangan
             </button>
+        </div> -->
+
+        <div class="hero-content-wrapper relative z-10 flex flex-col items-center justify-center h-full w-full">
+
+            <div class="couple-img" id="cover">
+                <img src="images/cover.png" alt="Sangga & Dhilla">
+            </div>
+
+            <button id="open-btn" class="btn-open" onclick="openInvitation()"">
+                <i class="fas fa-envelope-open mr-2"></i> Buka Undangan
+            </button>
+
+            <div class="cover-date mb-12">
+                <p class="font-serif" style="font-size: 2.1rem; color: var(--bg-green);">
+                    O8.02.2026
+                </p>
+            </div>
         </div>
+
     </section>
 
     <audio id="bg-music" loop>
@@ -73,13 +91,13 @@
             <div class="header-overlay"></div>
             
             <div class="header-content">
-                <p class="subtitle font-serif">Undangan Pernikahan</p>
+                <p class="subtitle font-serif" style="font-size: 1.5rem;">Undangan Pernikahan</p>
                 
                 <div class="couple-img">
                     <img src="images/nama.png" alt="Sangga & Dhilla">
                 </div>
                 
-                <p class="date font-serif">Minggu, 08 Februari 2026</p>
+                <p class="date font-serif" style="font-size: 1.8rem;">Minggu, 08 Februari 2026</p>
             </div>
 
             <div class="paper-ripped-header"></div>
