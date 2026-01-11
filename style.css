@@ -283,11 +283,6 @@ section {
     padding: 2rem 1.5rem 11rem 1.5rem;
 }
 
-#love-story{
-    min-height: auto;
-    height: auto;
-    padding: 1rem 1.5rem 4rem 1.5rem;
-}
 
 #gift{
     min-height: auto;
@@ -319,7 +314,7 @@ section {
 #dresscode {
     min-height: auto;
     height: auto;
-    padding: 1rem 1.5rem 11rem 1.5rem; /* Padding bawah agak besar buat bunga */
+    padding: 1rem 1.5rem 4rem 1.5rem !important; /* Padding bawah agak besar buat bunga */
 }
 
 .dresscode-palette {
@@ -351,9 +346,9 @@ section {
 }
 
 .color-item p {
-    font-size: 0.75rem;
+    font-size: 0.7rem !important;
     font-weight: 600;
-    color: #f2ece0; /* Warna teks hijau tema */
+    color: #264b09; /* Warna teks hijau tema */
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -422,11 +417,11 @@ div[style*="url('images/bunga"] {
 }
 
 /* Untuk section love-story yang butuh paper ripped hijau di bawah */
-#love-story .paper-ripped-bottom {
+#dresscode .paper-ripped-bottom {
     background: url('images/tomrip-cream.png') center bottom/cover no-repeat;
 }
 
-#love-story::after {
+#dresscode::after {
     content: '';
     position: absolute;
     bottom: -50px;
@@ -438,11 +433,6 @@ div[style*="url('images/bunga"] {
     z-index: 2;
     pointer-events: none;
 }
-
-#time-place .paper-ripped-bottom {
-    background: url('images/toprip-hijau.png') center bottom/cover no-repeat;
-}
-
 
 #wishes::after {
     content: '';
@@ -608,7 +598,7 @@ section.has-overflow-flower {
     background: url('images/bunga2.png') center/contain no-repeat;
 }
 
-#love-story .floral-decoration {
+#dresscode .floral-decoration {
     background: url('images/bunga3.png') center/contain no-repeat;
 }
 
@@ -702,34 +692,6 @@ h2 {
     color: #666;
 }
 
-/* LOVE STORY */
-.story-item {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.story-icon {
-    width: 40px;
-    height: 40px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.story-content h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-}
-
-.story-content p {
-    font-size: 0.875rem;
-    line-height: 1.6;
-}
 
 /* GIFT CARDS */
 .gift-card {
@@ -905,6 +867,8 @@ h2 {
 
 /* BUTTON MAPS */
 .btn-maps {
+    position: relative; /* Wajib ada biar z-index jalan */
+    z-index: 100 !important; /* Angkat ke lapisan paling atas */
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -951,13 +915,20 @@ h2 {
 
     /* 1. KECILKAN FONT HEADER & NAMA */
     .couple-img{
-    text-align: center; /* Memastikan gambar ada di tengah */
-    margin-bottom: 1rem; /* Jarak ke hiasan bunga di bawahnya */
-    margin-top: 1rem; 
-}
+        text-align: center; /* Memastikan gambar ada di tengah */
+        margin-bottom: 1rem; /* Jarak ke hiasan bunga di bawahnya */
+        margin-top: 1rem; 
+    }
 
     .couple-img img{
-        max-width: 380px; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
+        max-width: 300px !important; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
+        width: 100%;      /* Agar mengecil otomatis jika layar sangat sempit */
+        height: auto;     /* Menjaga proporsi gambar */
+        display: inline-block;
+    }
+
+    .couple-img-cover img{
+        max-width: 180px !important; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
         width: 100%;      /* Agar mengecil otomatis jika layar sangat sempit */
         height: auto;     /* Menjaga proporsi gambar */
         display: inline-block;
@@ -1018,12 +989,12 @@ h2 {
     }
 
     .btn-open {
-        padding: 0.775rem 1.5rem;
+        padding: 0.75rem 1.5rem !important;
         border-radius: 1rem;
         cursor: pointer;
-        font-size: 0.675rem;
+        font-size: 0.475rem;
         letter-spacing: 0.1em;
-        margin-top: 3rem;
+        margin-top: 0rem;
         transition: transform 0.3s;
     }
     
@@ -1084,6 +1055,10 @@ h2 {
         padding: 1rem 1.5rem 4rem 1.5rem;
     }
 
+    #dresscode div[style*="bottom: 450px"] {
+        bottom: -10px !important; /* Turunin dikit biar ga ngambang */
+    }
+
     /* 1. PERBAIKAN SECTION AGAR TIDAK SEMPIT */
     section#gift, section#wishes {
         padding-left: 2rem !important;  /* Kurangi dari 2rem jadi 1rem */
@@ -1104,6 +1079,28 @@ h2 {
         width: auto !important;
         padding: 0.4rem 0.8rem !important;
         font-size: 0.7rem !important;
+    }
+
+    .cover-date {
+        position: absolute !important; /* Lepaskan dari antrian elemen */
+        bottom: -60% !important;        /* Jarak 10% dari bawah layar (Aman buat semua HP) */
+        left: 0;
+        right: 0;
+        margin-top: 0 !important;      /* Hapus margin raksasa yang bikin error */
+        text-align: center;
+        z-index: 35;                   /* Pastikan di atas segalanya */
+    }
+
+    .cover-date p {
+        font-size: 1.5rem !important; /* Ukuran font tanggal di HP */
+    }
+
+    #cover {
+        margin-bottom: 1rem !important; /* Jarak ke tombol */
+        
+        /* Trik ketengahkan vertikal manual */
+        position: relative;
+        top: -50px; /* Geser naik dikit biar ga nabrak tanggal */
     }
 
     /* 3. PAKSA TEKS KECIL (OVERRIDE !IMPORTANT) */
