@@ -333,8 +333,8 @@ section {
 }
 
 .color-circle {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Bayangan biar timbul */
     border: 3px solid white; /* Border putih biar rapi */
@@ -347,8 +347,8 @@ section {
 
 .color-item p {
     font-size: 0.7rem !important;
-    font-weight: 600;
-    color: #264b09; /* Warna teks hijau tema */
+    font-weight: 550;
+    color: black; /* Warna teks hijau tema */
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -381,8 +381,11 @@ div[style*="url('images/bunga"] {
     top: -1px; /* Hindari gap */
     left: 0;
     right: 0;
-    height: 100px; /* Tinggi lebih besar */
-    background: url('images/toprip-hijau.png') center top/cover no-repeat;
+    height: 60px; /* Di HP kecilkan saja tingginya biar ga makan tempat */
+    background-image: url('images/toprip-hijau.png');
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: 100% 100% !important; /* Anti Zoom */
     z-index: 2;
 }
 
@@ -392,8 +395,11 @@ div[style*="url('images/bunga"] {
     bottom: -10px; /* Hindari gap */
     left: 0;
     right: 0;
-    height: 100px; /* Tinggi lebih besar */
-    background: url('images/tomrip-cream.png') center bottom/cover no-repeat;
+    height: 60px; /* Di HP kecilkan saja tingginya biar ga makan tempat */
+    background-image: url('images/tomrip-cream.png');
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: 100% 100% !important; /* Anti Zoom */
     z-index: 2;
 }
 
@@ -819,6 +825,28 @@ h2 {
     display: inline-block;
 }
 
+.footer-couple-img-doodle {
+        width: 100%;
+        text-align: center; /* Jaga-jaga center */
+        margin-bottom: 2rem !important;
+    }
+
+    /* 2. Gambarnya kita perbesar & paksa ke tengah */
+    .footer-couple-img-doodle img {
+        /* ATUR UKURAN DI SINI */
+        max-width: 250px !important; /* Naikkan dari 130px jadi 250px biar jelas */
+        
+        width: auto !important;      /* Biar rasionya tidak gepeng */
+        height: auto !important;
+
+        /* JURUS TENGAH (Anti Miring ke Pinggir) */
+        display: block !important;    /* Ubah dari inline jadi block */
+        margin-left: auto !important; /* Dorong dari kiri */
+        margin-right: auto !important;/* Dorong dari kanan */
+    }
+
+
+
 .max-w-md {
     max-width: 500px;
     margin: 0 auto;
@@ -885,7 +913,7 @@ h2 {
     background: #FFE4B5;
 }
 
-@media (max-width: 380px) {
+@media screen and (max-width: 490px) {
     .cover-content h1 {
         font-size: 3rem;
     }
@@ -908,10 +936,28 @@ h2 {
         width: 180px;
         height: 70px;
     }
+
+    .couple-img-cover img{
+        max-width: 140px !important; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
+        width: 100%;      /* Agar mengecil otomatis jika layar sangat sempit */
+        height: auto;     /* Menjaga proporsi gambar */
+        display: inline-block;
+    }
+
+    .cover-date {
+        position: absolute !important; /* Lepaskan dari antrian elemen */
+        bottom: -0% !important;        /* Jarak 10% dari bawah layar (Aman buat semua HP) */
+        left: 0;
+        right: 0;
+        margin-top: 0 !important;     /* Hapus margin raksasa yang bikin error */
+        text-align: center;
+        z-index: 35;                   /* Pastikan di atas segalanya */
+        /* border: solid; */
+    }
 }
 
 /* --- ZONA KHUSUS MOBILE (IPHONE 8, SE, ANDROID) --- */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 780px) {
 
     /* 1. KECILKAN FONT HEADER & NAMA */
     .couple-img{
@@ -928,10 +974,84 @@ h2 {
     }
 
     .couple-img-cover img{
-        max-width: 180px !important; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
+        max-width: 150px !important; /* Batasi lebar maksimal agar tidak terlalu besar di HP */
         width: 100%;      /* Agar mengecil otomatis jika layar sangat sempit */
         height: auto;     /* Menjaga proporsi gambar */
         display: inline-block;
+    }
+
+    .hero-content-wrapper {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important; /* Paksa konten ke tengah vertikal */
+        align-items: center !important;     /* Paksa konten ke tengah horizontal */
+        height: 100vh !important;           /* Tinggi wadah harus selayar penuh */
+        padding-bottom: 50px;               /* Sedikit ruang di bawah biar ga terlalu turun */
+        position: relative;
+    }
+
+    #cover {
+        /* Hapus semua margin aneh-aneh sebelumnya */
+        margin-top: 0 !important; 
+        margin-bottom: 0rem !important; /* Jarak antara Gambar dan Tombol */
+        
+        position: relative;
+        top: -80px; /* Opsional: Geser naik dikit biar posisinya agak di atas tengah visual */
+        /* border: solid; */
+    }
+
+    #open-btn {
+        margin: 0 !important; /* Hapus margin */
+        position: relative;
+        top: -30px; /* Ikut naik sama gambarnya */
+        z-index: 50;
+    }
+
+    .cover-date {
+        position: absolute !important; /* Lepaskan dari antrian flexbox */
+        
+        /* Ini kuncinya: Selalu berjarak 15% dari bawah layar, berapapun tinggi layarnya */
+        bottom: 22% !important;        
+        
+        left: 0;
+        right: 0;
+        margin: 0 !important;          /* Hapus margin manual */
+        text-align: center;
+        z-index: 40;
+    }
+
+    #cover img {
+        max-width: 200px !important; /* Ukuran gambar pas di HP */
+        width: 100%;
+        height: auto;
+    }
+
+    .header-content p.subtitle {
+        font-size: 1rem !important;
+        letter-spacing: 0.2em;
+        margin-bottom: -1rem;
+    }
+
+    .header-content p.date {
+        font-size: 1.1rem !important;
+        letter-spacing: 0.1em;
+    }
+
+    .header-content p.note {
+        font-size: 0.8em !important;
+        letter-spacing: 0.1em;
+        max-width: 250px; 
+        margin: 0 auto;
+    }
+
+    .text-center p.date {
+        font-size: 1.1rem !important;
+        letter-spacing: 0.1em;
+        margin-top: 2rem;
+    }
+
+    .cover-date p {
+        font-size: 1.3rem !important; /* Ukuran font tanggal di HP */
     }
 
     h2 {
@@ -1081,27 +1201,6 @@ h2 {
         font-size: 0.7rem !important;
     }
 
-    .cover-date {
-        position: absolute !important; /* Lepaskan dari antrian elemen */
-        bottom: -60% !important;        /* Jarak 10% dari bawah layar (Aman buat semua HP) */
-        left: 0;
-        right: 0;
-        margin-top: 0 !important;      /* Hapus margin raksasa yang bikin error */
-        text-align: center;
-        z-index: 35;                   /* Pastikan di atas segalanya */
-    }
-
-    .cover-date p {
-        font-size: 1.5rem !important; /* Ukuran font tanggal di HP */
-    }
-
-    #cover {
-        margin-bottom: 1rem !important; /* Jarak ke tombol */
-        
-        /* Trik ketengahkan vertikal manual */
-        position: relative;
-        top: -50px; /* Geser naik dikit biar ga nabrak tanggal */
-    }
 
     /* 3. PAKSA TEKS KECIL (OVERRIDE !IMPORTANT) */
     
@@ -1192,7 +1291,7 @@ body.cover-active {
 .top-flap {
     top: 0;
     transform-origin: top;
-    height: 80vh; /* Panjangin dikit biar numpuk enak */
+    height: 75vh; /* Panjangin dikit biar numpuk enak */
     z-index: 20;  /* LAYER PALING ATAS (Harus lebih tinggi dari bottom) */
 
     /* Ganti dengan file PNG transparan kamu */
@@ -1245,7 +1344,7 @@ body.cover-active {
 }
 
 #cover{
-    margin-top: 150px ; 
+    margin-top: 100px ; 
     margin-bottom: 70px;
 }
 
@@ -1257,7 +1356,7 @@ body.cover-active {
 }
 
 .cover-date{
-    margin-top: 240px;
+    margin-top: 250px;
 }
 
 /* Tombol Buka Undangan */
