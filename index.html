@@ -7,6 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <link rel="preload" as="image" href="images/cover-bg.png">
+    <link rel="preload" as="image" href="images/amplop-atas.png">
+    <link rel="preload" as="image" href="images/amplop-bawah.png">
 </head>
 <body>
 
@@ -24,6 +28,11 @@
             <button class="btn-open" onclick="openInvitation()">✉ Buka Undangan</button>
         </div>
     </div> -->
+
+    <div id="loading-screen">
+        <div class="spinner"></div>
+        <p style="margin-top:10px; font-size: 0.8rem; letter-spacing: 2px;">MEMUAT UNDANGAN...</p>
+    </div>
 
     <section id="hero" class="h-screen flex flex-col justify-center items-center text-center bg-cream relative overflow-hidden envelope-container">
 
@@ -97,10 +106,10 @@
                     <img src="images/nama.png" alt="Sangga & Dhilla">
                 </div>
                 
-                <p class="date font-serif" style="font-size: 1.8rem;">Minggu, 08 Februari 2026</p>
+                <p class="date font-serif" style="font-weight: 600; font-size: 1.8rem;">Minggu, 08 Februari 2026</p>
 
-                <p class="font-serif" style="font-size: 1.175rem; margin-top: 80px">Kepada Yth :</p>
-                <p class="font-serif" style="font-size: 1.175rem;">Bpk/Ibu/Saudara/i</p>
+                <p class="yth font-serif" style="font-size: 1.175rem; margin-top: 80px">Kepada Yth :</p>
+                <p class="orang font-serif" style="font-size: 1.175rem;">Bpk/Ibu/Saudara/i</p>
                 <p class="guest-name font-serif mb-12" style="font-weight: 600 !important; margin-top: 15px; ">Tamu Undangan</p>
                 <p class="note font-serif" style="font-size: 0.125rem; opacity: 0.85; margin-top: 80px">
                     *Undangan ini berlaku hanya untuk nama yang ditulis di atas.
@@ -213,7 +222,7 @@
             </div>
 
             <div class="text-center mb-8">
-                <p class="font-serif date" style="font-size: 1.7rem; margin-bottom: 1.5rem;" data-aos="zoom-in" data-aos-delay="0">Minggu, 08 Februari 2026</p>
+                <p class="date" style="font-weight: 600; font-size: 0.7rem; margin-bottom: 1.5rem;" data-aos="zoom-in" data-aos-delay="0">Minggu, 08 Februari 2026</p>
                 <p class="font-serif" style="font-size: 1rem; margin-bottom: 0.5rem;" data-aos="zoom-in" data-aos-delay="100">Akad Nikah - 08:00 s.d 09.00 WIB</p>
                 <p class="font-serif" style="font-size: 1rem;" data-aos="zoom-in" data-aos-delay="200">Resepsi - 09:00 s.d 12.00 WIB</p>
             </div>
@@ -228,7 +237,7 @@
 
             <div class="text-center mb-2" style=" position: relative; z-index: 50; margin-top: 4rem; margin-bottom: 1rem;" data-aos="zoom-in" data-aos-delay="200">
                 <a href="https://maps.app.goo.gl/JkYptsdb5efHHhm37" target="_blank" class="btn-maps">
-                    📍 Google Maps
+                    📍 Lihat Lokasi
                 </a>
             </div>
 
@@ -742,6 +751,24 @@
                     btnSubmit.disabled = false;
                 });
         }
+
+        window.onload = function() {
+            // 1. Hilangkan Loader setelah halaman siap
+            const loader = document.getElementById('loading-screen');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.visibility = 'hidden';
+                    loader.style.display = 'none'; // Hapus total biar ga ganggu klik
+                }, 500);
+            }
+
+            // 2. Fungsi lama kamu
+            getGuestName();
+            loadWishes();
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+        };
     </script>
 
 </body>
