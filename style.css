@@ -1191,8 +1191,8 @@ h2 {
         padding: 1rem 1.5rem 4rem 1.5rem;
     }
 
-    #dresscode div[style*="bottom: 450px"] {
-        bottom: -10px !important; /* Turunin dikit biar ga ngambang */
+    #dresscode div[style*="bottom: 440px"] {
+        bottom: 110px !important; /* Turunin dikit biar ga ngambang */
     }
 
     /* 1. PERBAIKAN SECTION AGAR TIDAK SEMPIT */
