@@ -683,17 +683,37 @@
             const totalPages = Math.ceil(wishesData.length / itemsPerPage);
             if (totalPages <= 1) return;
 
+            // 1. Tombol PREV (<<)
             if (currentPage > 1) {
-                const prevBtn = createPageBtn('<<', () => changePage(currentPage - 1));
+                const prevBtn = createPageBtn('❮', () => changePage(currentPage - 1));
                 paginationContainer.appendChild(prevBtn);
             }
-            for (let i = 1; i <= totalPages; i++) {
+
+            // --- LOGIKA PEMBATAS HALAMAN (SMART LIMITER) ---
+            // Kita cuma mau nampilin 3 tombol angka biar ga kepanjangan
+            let startPage = Math.max(1, currentPage - 1);
+            let endPage = Math.min(totalPages, currentPage + 1);
+
+            // Trik biar kalau di Hal 1, tetep muncul 3 tombol (1, 2, 3)
+            if (currentPage === 1) {
+                endPage = Math.min(totalPages, 3);
+            }
+            // Trik biar kalau di Hal Terakhir, tetep muncul 3 tombol sebelumnya
+            else if (currentPage === totalPages) {
+                startPage = Math.max(1, totalPages - 2);
+            }
+
+            // 2. Loop Angka (Cuma print dari startPage ke endPage)
+            for (let i = startPage; i <= endPage; i++) {
                 const btn = createPageBtn(i, () => changePage(i));
                 if (i === currentPage) btn.classList.add('active'); 
                 paginationContainer.appendChild(btn);
             }
+            // ------------------------------------------------
+
+            // 3. Tombol NEXT (>>)
             if (currentPage < totalPages) {
-                const nextBtn = createPageBtn('>>', () => changePage(currentPage + 1));
+                const nextBtn = createPageBtn('❯', () => changePage(currentPage + 1));
                 paginationContainer.appendChild(nextBtn);
             }
         }
